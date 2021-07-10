@@ -240,8 +240,28 @@ var myp = [2, 3, 4, 5, 6, 7].reduce((accumulator, current) => {
 })
 console.log(myp);
 
-
-
+//callbacks is a function which is  passed inside of another function
+//and that function gets executed at some point
+function callBackExample(name, callback) {
+    console.log(callback(name));
+}
+callBackExample("abel mohammed", function (name) {
+    return "hello" + name;
+});
+//or
+function callBackExample(name, callback) {
+    console.log(callback(name));
+}
+var callback = function (name) {
+    return "hello" + name;
+}
+callBackExample("abel mohammed", callback);
+// an in built function uses a call back
+var mapCallback = function (n) {
+    return n * 2;
+}
+var map = [2, 3, 4, 5].map(mapCallback);
+console.log(map);
 
 
 
