@@ -114,19 +114,71 @@ const pricePropertyName = 'PRICE';
 
 const calculator = (name, price) => {
     return {
-     name,
-     add(n2, n3){
-         return n2+n3;
-     },
-     [pricePropertyName.toLowerCase()] : price
+        name,
+        add(n2, n3) {
+            return n2 + n3;
+        },
+        [pricePropertyName.toLowerCase()]: price
     }
 }
 
 const calc = calculator('casio', 99.90);
 console.log(calc.name);
-console.log(calc.add(34,56));
+console.log(calc.add(34, 56));
 console.log(calc.price);
 
 //array destructuring allows us to pull values from an array
+
+const names = ['maria', 'anna', 'joe', 'mark', 'matt'];
+
+const anna = names[0];
+const mariam = names[2];
+const joe = names[3];
+
+//we can replace the following by simply saying 
+const [anna, mariam, joe, ...restOfNames] = names;
+
+
+console.log(`${anna} ${mariam} ${joe}`);
+console.log(restOfNames.length);
+//destructing objects
+
+const getUser = () => {
+    return {
+        name: 'john',
+        surname: 'bosco',
+        gender: 'male',
+        address: {
+            country: 'Niger',
+            city: 'cali',
+            postcode: 'ca',
+            fullAddress: {
+                doorNumber: 22,
+                street: 'la side south'
+            }
+        },
+        age: 29
+    }
+};
+
+const user = getUser();
+
+const name = user.name;
+const age = user.age;
+const country = user.address.country;
+const doorNumber = user.address.fullAddress.doorNumber;
+
+console.log(name);
+console.log(country);
+
+// we can destructure the above code by simply
+
+const { name, age } = user;
+//we get the same value as above
+//we also can destructure nested properties
+const { name, age, address: { country: thecountry } } = user;
+//nested within a nested
+const { address: { fullAddress: { doorNumber: number } } } = user;
+
 
 
