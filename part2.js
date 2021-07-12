@@ -191,7 +191,7 @@ const getRandomUser = n => {
             log(JSON.stringify(randomUsers.result.length));
             randomUsers.result.forEach(user => {
                 const { gender, email } = user;
-                log(`${gender} ${user}`)
+                log(`${gender} ${email}`)
             })
         })
     });
@@ -200,3 +200,35 @@ const getRandomUser = n => {
 getRandomUser(23);
 
 //Generators
+// a generator is a function that can be paused
+const getNumbers = function* (){
+    yield 2;
+    yield "hello";
+    yield true;
+    yield {name: 'alex'};
+    return 'i am done'
+}
+
+const numbersGenerator = getNumbers();
+console.log(numbersGenerator.next().value);
+
+const getNumbers2 = function* (numbers){
+for (let i = 0; i < numbers.length; i++) {
+    yield numbers[i];
+    
+}
+}
+
+const numbersGen = getNumbers2([2,3,4,5,6,7,8]);
+
+const interval = setInterval(()=>{
+const next = numbersGen.next();
+if (next.done) {
+    console.log('this generator is done');
+    clearInterval(interval);
+}else{
+    const number = next.value;
+    console.log(number);
+}
+}, 2000);
+
